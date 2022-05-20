@@ -2,6 +2,7 @@ package br.com.rodrigolorandi.config;
 
 import br.com.rodrigolorandi.domain.Post;
 import br.com.rodrigolorandi.domain.User;
+import br.com.rodrigolorandi.dto.AuthorDTO;
 import br.com.rodrigolorandi.repository.PostRepository;
 import br.com.rodrigolorandi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,10 +29,11 @@ public class Instantiation  implements CommandLineRunner {
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
 
-        Post post1 = new Post(null, LocalDate.of(2018,03,21), "Partiu viagem", "Vou viajar para São Paulo", maria);
-        Post post2 = new Post(null, LocalDate.of(2019,05,05), "Bom dia", "Acordei feliz", maria);
-
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+        Post post1 = new Post(null, LocalDate.of(2018,03,21), "Partiu viagem", "Vou viajar para São Paulo", new AuthorDTO(maria));
+        Post post2 = new Post(null, LocalDate.of(2019,05,05), "Bom dia", "Acordei feliz", new AuthorDTO(maria));
+
         postRepository.saveAll(Arrays.asList(post1, post2));
 
 
