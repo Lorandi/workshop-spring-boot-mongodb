@@ -1,5 +1,6 @@
 package br.com.rodrigolorandi.resource;
 
+import br.com.rodrigolorandi.domain.Post;
 import br.com.rodrigolorandi.domain.User;
 import br.com.rodrigolorandi.dto.UserDTO;
 import br.com.rodrigolorandi.service.UserService;
@@ -51,6 +52,12 @@ public class UserResource {
         userDTO.setId(id);
         service.update(userDTO);
         return  ResponseEntity.noContent().build();
+    }
 
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findByPost(@PathVariable String id){
+        User user = service.findById(id);
+        return  ResponseEntity.ok().body(user.getPosts());
     }
 }
