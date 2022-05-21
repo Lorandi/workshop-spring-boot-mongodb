@@ -1,13 +1,13 @@
 package br.com.rodrigolorandi.service;
 
 import br.com.rodrigolorandi.domain.Post;
-import br.com.rodrigolorandi.domain.User;
 import br.com.rodrigolorandi.repository.PostRepository;
 import br.com.rodrigolorandi.service.exception.ObjectNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,5 +31,12 @@ public class PostService {
     public List<Post> findByTitle(String text){
         return repository.searchTitle(text);
     }
+
+    public List <Post> fullSearch (String text, LocalDate minDate, LocalDate maxDate){
+
+        return repository.fullSearch(text, minDate, maxDate);
+    }
+
+
 
 }
